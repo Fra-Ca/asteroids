@@ -1,5 +1,6 @@
 from circleshape import*
 from constants import*
+import sys
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
@@ -12,3 +13,9 @@ class Asteroid(CircleShape):
     
     def update(self, dt):
         self.position += self.velocity * dt
+    def check_collision(self, circleshape):
+        distance = self.position.distance_to(circleshape.position)
+        
+        if distance <= (self.radius + circleshape.radius):
+            print("Game Over!")
+            sys.exit()
